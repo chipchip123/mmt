@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mạng mt</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<h1>Computer Networks – Practice System</h1>
+
+<!-- MENU -->
+<div id="menu">
+
+  <h2>📘 Chapters</h2>
+  <button onclick="loadChapter(1)">Chapter 1 – Introduction</button>
+  <button onclick="loadChapter(2)">Chapter 2 – Physical Layer</button>
+  <button onclick="loadChapter(3)">Chapter 3 – Data Link Layer</button>
+  <button onclick="loadChapter(4)">Chapter 4 – MAC & LAN</button>
+  <button onclick="loadChapter(5)">Chapter 5 – Network Layer</button>
+  <button onclick="loadChapter(6)">Chapter 6 – Transport Layer</button>
+  <button onclick="loadChapter(7)">Chapter 7 – Application Layer</button>
+
+  <h2>🧪 Mock Tests</h2>
+  <button onclick="loadMockPDF()">Radom đề thi thử của trường – 40 / 200 PDF</button>
+  <button onclick="loadMockMix()">Radom đề Mix Chapters 1–7</button>
+</div>
+
+<!-- HEADER HIỂN THỊ TÊN CHƯƠNG -->
+<div id="header" style="display:none;">
+  <h2 id="title"></h2>
+  <button onclick="goBack()">⬅ Back to Menu</button>
+  <hr>
+</div>
+
+<!-- NỘI DUNG -->
+<div id="content">
+  <p>Chọn chương hoặc đề thi để bắt đầu.</p>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
