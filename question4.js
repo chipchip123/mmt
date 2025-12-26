@@ -1,4 +1,4 @@
-const question4 = [
+window.question4 = [
 
 /* ================= SECTION 1 ================= */
 {
@@ -346,3 +346,4 @@ const question4 = [
 }
 
 ];
+
