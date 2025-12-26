@@ -1,5 +1,5 @@
 /* ================= GLOBAL STATE ================= */
-let CURRENT_MODE = "menu"; // menu | chapter | mock_pdf | mock_mix
+let CURRENT_MODE = "menu";
 let CURRENT_CHAPTER = null;
 let QUESTIONS = [];
 let CURRENT_INDEX = 0;
@@ -149,11 +149,13 @@ function renderQuestion() {
   content.innerHTML = `
     <h3>${q.section}</h3>
     <p><b>Câu ${CURRENT_INDEX + 1} / ${QUESTIONS.length}:</b> ${q.q}</p>
-    <div>
+    <div id="answers">
       ${options
         .map(
           o =>
-            `<button onclick="submitAnswer(${o.correct})">${o.text}</button>`
+            `<button class="answer-btn" onclick="submitAnswer(${o.correct}, this)">
+              ${o.text}
+            </button>`
         )
         .join("")}
     </div>
@@ -161,11 +163,21 @@ function renderQuestion() {
 }
 
 /* ================= SUBMIT ANSWER ================= */
-function submitAnswer(isCorrect) {
+function submitAnswer(isCorrect, btn) {
   const q = QUESTIONS[CURRENT_INDEX];
 
-  if (isCorrect) CORRECT_COUNT++;
-  else WRONG_COUNT++;
+  // khóa tất cả đáp án
+  document.querySelectorAll(".answer-btn").forEach(b =>
+    b.classList.add("disabled")
+  );
+
+  if (isCorrect) {
+    CORRECT_COUNT++;
+    btn.classList.add("correct");
+  } else {
+    WRONG_COUNT++;
+    btn.classList.add("wrong");
+  }
 
   USER_ANSWERS.push({
     question: q.q,
