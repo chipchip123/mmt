@@ -27,7 +27,7 @@ function shuffle(arr) {
     .map(x => x.v);
 }
 
-/* ================= UI ================= */
+/* ================= UI FUNCTIONS ================= */
 function showHeader(title) {
   document.getElementById("menu").style.display = "none";
   document.getElementById("header").style.display = "block";
@@ -38,10 +38,10 @@ function showMenu() {
   document.getElementById("menu").style.display = "block";
   document.getElementById("header").style.display = "none";
   document.getElementById("content").innerHTML =
-    "<p>Chọn chương hoặc đề thi để bắt đầu.</p>";
+    "<p style='text-align:center'>Chọn chương hoặc chế độ thi để bắt đầu.</p>";
 }
 
-/* ================= RESET ================= */
+/* ================= RESET STATE ================= */
 function resetState() {
   QUESTIONS = [];
   USER_ANSWERS = [];
@@ -50,17 +50,22 @@ function resetState() {
   WRONG_COUNT = 0;
 }
 
-/* ================= LOAD CHAPTER ================= */
+/* ================= LOADERS ================= */
 function loadChapter(ch) {
   CURRENT_MODE = "chapter";
   CURRENT_CHAPTER = ch;
   resetState();
-
   showHeader(CHAPTER_TITLES[ch]);
 
   const script = document.createElement("script");
   script.src = `question${ch}.js`;
+  
   script.onload = () => {
+    if (!window[`question${ch}`]) {
+        alert("Chưa có dữ liệu cho chương này!");
+        showMenu();
+        return;
+    }
     window[`question${ch}`].forEach(sec => {
       sec.questions.forEach(q => {
         QUESTIONS.push({
@@ -73,39 +78,43 @@ function loadChapter(ch) {
     QUESTIONS = shuffle(QUESTIONS);
     renderQuestion();
   };
+  
+  script.onerror = () => {
+      alert(`Không tìm thấy file: question${ch}.js`);
+      showMenu();
+  };
+  
   document.body.appendChild(script);
 }
 
-/* ================= MOCK PDF ================= */
 function loadMockPDF() {
   CURRENT_MODE = "mock_pdf";
   resetState();
-
   showHeader("Mock Test – 40 / 200 PDF");
 
   const script = document.createElement("script");
   script.src = "mock_pdf.js";
   script.onload = () => {
+    if(typeof mock_pdf === 'undefined') { alert("Lỗi file mock_pdf.js"); return; }
     QUESTIONS = shuffle(mock_pdf).slice(0, 40);
     renderQuestion();
   };
   document.body.appendChild(script);
 }
 
-/* ================= MOCK MIX ================= */
 function loadMockMix() {
   CURRENT_MODE = "mock_mix";
   resetState();
-
   showHeader("Mock Test – Mix Chapters 1–7");
 
   const loaders = [];
   for (let i = 1; i <= 7; i++) {
     loaders.push(
-      new Promise(res => {
+      new Promise(resolve => {
         const s = document.createElement("script");
         s.src = `question${i}.js`;
-        s.onload = res;
+        s.onload = () => resolve(true);
+        s.onerror = () => resolve(false);
         document.body.appendChild(s);
       })
     );
@@ -114,22 +123,25 @@ function loadMockMix() {
   Promise.all(loaders).then(() => {
     let pool = [];
     for (let i = 1; i <= 7; i++) {
-      window[`question${i}`].forEach(sec => {
-        sec.questions.forEach(q => {
-          pool.push({
-            ...q,
-            section: sec.section,
-            cheatSheet: sec.cheatSheet
+      if (window[`question${i}`]) {
+        window[`question${i}`].forEach(sec => {
+          sec.questions.forEach(q => {
+            pool.push({
+              ...q,
+              section: sec.section,
+              cheatSheet: sec.cheatSheet
+            });
           });
         });
-      });
+      }
     }
+    if (pool.length === 0) { alert("Không tải được câu hỏi nào!"); showMenu(); return; }
     QUESTIONS = shuffle(pool).slice(0, 40);
     renderQuestion();
   });
 }
 
-/* ================= RENDER QUESTION ================= */
+/* ================= MAIN RENDER ================= */
 function renderQuestion() {
   const content = document.getElementById("content");
   content.innerHTML = "";
@@ -139,6 +151,7 @@ function renderQuestion() {
   }
 
   const q = QUESTIONS[CURRENT_INDEX];
+  
   const options = shuffle(
     q.options.map((opt, idx) => ({
       text: opt,
@@ -146,14 +159,16 @@ function renderQuestion() {
     }))
   );
 
+  // LƯU Ý: Thêm thuộc tính data-correct="${o.correct}" để tìm nút đúng dễ dàng
   content.innerHTML = `
-    <h3>${q.section}</h3>
-    <p><b>Câu ${CURRENT_INDEX + 1} / ${QUESTIONS.length}:</b> ${q.q}</p>
+    <div style="margin-bottom: 10px; color: #666; font-size: 0.9em;">${q.section || "General"}</div>
+    <div class="progress">Câu ${CURRENT_INDEX + 1} / ${QUESTIONS.length}</div>
+    <p class="question-text">${q.q}</p>
     <div id="answers">
       ${options
         .map(
           o =>
-            `<button class="answer-btn" onclick="submitAnswer(${o.correct}, this)">
+            `<button class="answer-btn" onclick="submitAnswer(${o.correct}, this)" data-correct="${o.correct}">
               ${o.text}
             </button>`
         )
@@ -162,21 +177,31 @@ function renderQuestion() {
   `;
 }
 
-/* ================= SUBMIT ANSWER ================= */
+/* ================= SUBMIT & FEEDBACK (ĐÃ NÂNG CẤP) ================= */
 function submitAnswer(isCorrect, btn) {
   const q = QUESTIONS[CURRENT_INDEX];
 
-  // khóa tất cả đáp án
-  document.querySelectorAll(".answer-btn").forEach(b =>
-    b.classList.add("disabled")
-  );
+  // 1. Khóa tất cả các nút
+  document.querySelectorAll(".answer-btn").forEach(b => b.classList.add("disabled"));
 
+  // 2. Tìm nút đúng (để hiển thị nếu người dùng chọn sai)
+  let correctBtn = null;
+  document.querySelectorAll(".answer-btn").forEach(b => {
+      if (b.getAttribute("data-correct") === "true") {
+          correctBtn = b;
+      }
+  });
+
+  // 3. Xử lý Đúng/Sai
   if (isCorrect) {
     CORRECT_COUNT++;
-    btn.classList.add("correct");
+    btn.classList.add("correct"); // Tô xanh nút mình chọn
   } else {
     WRONG_COUNT++;
-    btn.classList.add("wrong");
+    btn.classList.add("wrong"); // Tô đỏ nút mình chọn
+    if (correctBtn) {
+        correctBtn.classList.add("correct"); // TỰ ĐỘNG TÔ XANH NÚT ĐÚNG
+    }
   }
 
   USER_ANSWERS.push({
@@ -187,66 +212,72 @@ function submitAnswer(isCorrect, btn) {
   });
 
   const content = document.getElementById("content");
+  
+  // Tạo Cheat Sheet
+  let cheatSheetHTML = "";
+  if (q.cheatSheet && q.cheatSheet.length > 0) {
+      cheatSheetHTML = `
+        <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 15px; border-left: 4px solid #007bff;">
+            <strong>💡 Kiến thức cần nhớ (Keyword: ${q.keyword || "General"})</strong>
+            <ul style="margin: 5px 0 0 20px; padding: 0;">
+                ${q.cheatSheet.map(c => {
+                    const isRelevant = q.keyword && c.term.includes(q.keyword.split(":")[0]); 
+                    const style = isRelevant ? "color: #d63384; font-weight: bold;" : "";
+                    return `<li style="${style}"><b>${c.term}</b>: ${c.def}</li>`;
+                }).join("")}
+            </ul>
+        </div>
+      `;
+  }
+
+  // Lấy nội dung text của đáp án đúng để hiện ra log
+  const correctAnswerText = correctBtn ? correctBtn.innerText : "Không xác định";
+
   content.innerHTML += `
     <hr>
-    <p><b>${isCorrect ? "✅ ĐÚNG" : "❌ SAI"}</b></p>
-    <h4>Cheat Sheet (keyword: ${q.keyword})</h4>
-    <ul>
-      ${q.cheatSheet
-        .map(c => `<li><b>${c.term}</b>: ${c.def}</li>`)
-        .join("")}
-    </ul>
-    <button onclick="nextQuestion()">Câu tiếp</button>
+    <div style="margin-top: 10px;">
+        ${isCorrect 
+            ? "<span style='color:green; font-weight:bold; font-size:1.2em'>✅ CHÍNH XÁC!</span>" 
+            : `<span style='color:red; font-weight:bold; font-size:1.2em'>❌ SAI RỒI!</span><br>
+               <span style='color:green;'>👉 Đáp án đúng là: <b>${correctAnswerText}</b></span>`
+        }
+    </div>
+    ${cheatSheetHTML}
+    <button class="next-btn" onclick="nextQuestion()" style="margin-top: 15px; padding: 10px 20px; cursor: pointer; background: #333; color: #fff; border: none; border-radius: 4px;">Câu tiếp ➡</button>
   `;
 }
 
-/* ================= NEXT ================= */
 function nextQuestion() {
   CURRENT_INDEX++;
   renderQuestion();
 }
 
-/* ================= REVIEW ================= */
+/* ================= RESULT SCREEN ================= */
 function renderReview() {
   const total = CORRECT_COUNT + WRONG_COUNT;
-  const score =
-    total === 0 ? 0 : ((CORRECT_COUNT / total) * 100).toFixed(2);
+  const score = total === 0 ? 0 : ((CORRECT_COUNT / total) * 100).toFixed(0);
+  let scoreColor = score >= 80 ? "green" : (score >= 50 ? "orange" : "red");
 
   const content = document.getElementById("content");
   content.innerHTML = `
     <h2>📊 KẾT QUẢ BÀI LÀM</h2>
-
-    <p><b>✅ Số câu đúng:</b> ${CORRECT_COUNT}</p>
-    <p><b>❌ Số câu sai:</b> ${WRONG_COUNT}</p>
-    <p><b>📌 Tổng số câu:</b> ${total}</p>
-    <p><b>🎯 Điểm:</b> ${score}%</p>
-
+    <div style="font-size: 1.2em; margin-bottom: 20px;">
+        <p>✅ Đúng: <b>${CORRECT_COUNT}</b></p>
+        <p>❌ Sai: <b>${WRONG_COUNT}</b></p>
+        <p>🏆 Điểm số: <b style="color:${scoreColor}; font-size: 1.5em">${score}/100</b></p>
+    </div>
     <hr>
-
-    <h3>📖 REVIEW CHI TIẾT</h3>
-
-    ${USER_ANSWERS
-      .map(
-        (a, i) => `
-      <div>
-        <p><b>Câu ${i + 1}:</b> ${a.question}</p>
-        <p>Kết quả: ${a.correct ? "✅ ĐÚNG" : "❌ SAI"}</p>
-        <ul>
-          ${a.cheatSheet
-            .map(c => `<li><b>${c.term}</b>: ${c.def}</li>`)
-            .join("")}
-        </ul>
-        <hr>
+    <h3>📖 XEM LẠI CÁC CÂU ĐÃ LÀM</h3>
+    ${USER_ANSWERS.map((a, i) => `
+      <div style="border-bottom: 1px solid #eee; padding: 10px 0;">
+        <p><b>Câu ${i + 1}:</b> ${a.question} <span style="float:right">${a.correct ? "✅" : "❌"}</span></p>
+        ${!a.correct ? `<p style="color: #666; font-size: 0.9em;"><i>Xem lại keyword: ${a.keyword}</i></p>` : ""}
       </div>
-    `
-      )
-      .join("")}
-
-    <button onclick="goBack()">⬅ Back to Menu</button>
+    `).join("")}
+    <button onclick="goBack()" style="margin-top: 20px; padding: 10px; width: 100%;">⬅ Quay về Menu</button>
   `;
 }
 
-/* ================= BACK ================= */
 function goBack() {
   CURRENT_MODE = "menu";
   CURRENT_CHAPTER = null;
