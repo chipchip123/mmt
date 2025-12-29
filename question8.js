@@ -1,14 +1,14 @@
 window.question8= [
 
-  /* ================= SECTION 1: NETWORK BASICS & MODELS ================= */
+  /* ================= SECTION 1: TỔNG QUAN MẠNG & MÔ HÌNH OSI/TCP ================= */
   {
-    section: "1. Network Basics & OSI/TCP Models",
+    section: "1. Tổng quan & Mô hình OSI/TCP",
     cheatSheet: [
-      { term: "Packet Switching", def: "Shares network resources dynamically (bursty traffic)." },
-      { term: "Circuit Switching", def: "Reserves fixed bandwidth/resources (guaranteed quality)." },
-      { term: "Protocol", def: "Defines format, order, and actions of messages." },
-      { term: "LAN", def: "Local Area Network (small geo area like an office)." },
-      { term: "ISP", def: "Internet Service Provider (Network of networks)." }
+      { term: "Packet Switching", def: "Chuyển mạch gói: Chia sẻ đường truyền động, hiệu quả cho dữ liệu đột ngột (bursty)." },
+      { term: "Circuit Switching", def: "Chuyển mạch kênh: Dành riêng tài nguyên (băng thông cố định), lãng phí nếu không dùng." },
+      { term: "Protocol", def: "Giao thức: Định dạng, thứ tự và hành động của các thông điệp." },
+      { term: "OSI Model", def: "7 tầng: Physical -> Data Link -> Network -> Transport -> Session -> Presentation -> Application." },
+      { term: "Router", def: "Thiết bị tầng Network (L3), định tuyến gói tin giữa các mạng khác nhau." }
     ],
     questions: [
       {
@@ -34,10 +34,21 @@ window.question8= [
         keyword: "Protocol Layers"
       },
       {
+        q: "Where does the following hold in practice for end systems vs. access networks?",
+        options: [
+          "Access networks connect end systems to edge routers.",
+          "End systems route between ISPs.",
+          "Core networks connect to mice.",
+          "Access networks are only wireless."
+        ],
+        answer: 0,
+        keyword: "Access Networks"
+      },
+      {
         q: "In OSI model, addressing and routing functions of the system are provided by ______",
         options: ["Application layer", "Transport layer", "Network layer", "Session layer"],
         answer: 2,
-        keyword: "Routing Layer"
+        keyword: "OSI Routing"
       },
       {
         q: "Which statement is correct about what is a protocol?",
@@ -49,6 +60,47 @@ window.question8= [
         ],
         answer: 0,
         keyword: "Protocol Definition"
+      },
+      {
+        q: "The Data Link Layer of the OSI model has ______ sublayers.",
+        options: ["1", "2", "3", "4"],
+        answer: 1,
+        keyword: "Data Link Sublayers"
+      },
+      {
+        q: "A ______ is a device that forwards packets between networks by processing the routing information included in the packet.",
+        options: ["Bridge", "Firewall", "Router", "Hub"],
+        answer: 2,
+        keyword: "Router Definition"
+      },
+      {
+        q: "When is the following true about delay, loss, throughput?",
+        options: [
+          "Loss cannot happen in routers.",
+          "Delay never depends on load.",
+          "Throughput equals bandwidth always.",
+          "Queueing can cause delay and packet loss."
+        ],
+        answer: 3,
+        keyword: "Delay & Loss"
+      },
+      {
+        q: "Which layer of the OSI model does Hub work in?",
+        options: ["Physical layer.", "Data link layer.", "Network layer.", "Transport layer."],
+        answer: 0,
+        keyword: "Hub Layer"
+      },
+      {
+        q: "Which of the following device is used to connect two different networks?",
+        options: ["Hub", "Switch", "Router (Gateway)", "Repeater"],
+        answer: 2,
+        keyword: "Connecting Device"
+      },
+      {
+        q: "The physical layer translates logical communication requests from the ______ into hardware operations.",
+        options: ["Data link layer", "Network layer", "Transport layer", "Application layer"],
+        answer: 0,
+        keyword: "Physical-DataLink Interface"
       },
       {
         q: "Which statement is correct about Device behavior with Internet = network of networks?",
@@ -65,40 +117,28 @@ window.question8= [
         q: "The TCP/IP model does not have ______",
         options: ["Application layer", "Transport layer", "Network layer", "Session layer"],
         answer: 3,
-        keyword: "TCP/IP Model"
+        keyword: "TCP/IP vs OSI"
       },
       {
-        q: "Which type of network covers a small geographical area, such as an office or building?",
-        options: ["Local area network (LAN)", "Metropolitan area network (MAN)", "Wide area network (WAN)", "Storage area network (SAN)"],
-        answer: 0,
-        keyword: "LAN"
+        q: "In OSI model, addressing and routing functions of the system are provided by ______ (Duplicate)",
+        options: ["Application layer", "Transport layer", "Network layer", "Session layer"],
+        answer: 2,
+        keyword: "Routing Function"
       }
     ]
   },
 
-  /* ================= SECTION 2: PHYSICAL LAYER & SIGNALS ================= */
+  /* ================= SECTION 2: TẦNG VẬT LÝ & TÍN HIỆU (PHYSICAL LAYER) ================= */
   {
-    section: "2. Physical Layer & Signals",
+    section: "2. Tầng Vật lý & Tín hiệu",
     cheatSheet: [
-      { term: "Physical Layer", def: "Transmits raw bits, handles modulation and line coding." },
-      { term: "Manchester Encoding", def: "Embeds a clock transition in each bit (for synchronization)." },
-      { term: "Fiber Optic", def: "High bandwidth, immune to electromagnetic interference." },
-      { term: "Multiplexing", def: "Sharing a channel (FDM: Frequency, TDM: Time)." },
-      { term: "Hub", def: "Layer 1 device, broadcasts to all ports." }
+      { term: "Tín hiệu số (Digital)", def: "Rời rạc (Discrete), mức 0 và 1." },
+      { term: "Tín hiệu tương tự (Analog)", def: "Liên tục (Continuous), ví dụ sóng âm." },
+      { term: "Cáp quang (Optical Fiber)", def: "Băng thông lớn, truyền xa, ít nhiễu, giá giảm theo khoảng cách." },
+      { term: "Multiplexing", def: "Dồn kênh: FDM (Tần số), TDM (Thời gian)." },
+      { term: "Manchester Encoding", def: "Mã hóa dòng: Luôn có chuyển đổi giữa bit để đồng bộ đồng hồ." }
     ],
     questions: [
-      {
-        q: "Which layer of the OSI model does Hub work in?",
-        options: ["Physical layer", "Data link layer", "Network layer", "Transport layer"],
-        answer: 0,
-        keyword: "Hub Layer"
-      },
-      {
-        q: "The physical layer translates logical communication requests from the ______ into hardware operations.",
-        options: ["Data link layer", "Network layer", "Transport layer", "Application layer"],
-        answer: 0,
-        keyword: "Physical Layer Interaction"
-      },
       {
         q: "Which statement is correct about Device behavior with FDM vs TDM in access?",
         options: [
@@ -108,14 +148,14 @@ window.question8= [
           "Both require token ring."
         ],
         answer: 2,
-        keyword: "Multiplexing"
+        keyword: "Multiplexing FDM/TDM"
       },
       {
-        q: "When is the following true about period (T), frequency (f)?",
+        q: "When is the following true about period, frequency, phase?",
         options: [
-          "f=T",
-          "f=1/T",
-          "T=2πf",
+          "f=T; phase is amplitude.",
+          "f=1/T; phase shifts waveform alignment.",
+          "T=2πf; phase is time.",
           "Phase sets data rate only."
         ],
         answer: 1,
@@ -130,13 +170,30 @@ window.question8= [
           "Manchester embeds a clock transition each bit."
         ],
         answer: 3,
-        keyword: "Manchester Encoding"
+        keyword: "Manchester Coding"
       },
       {
         q: "The Bluetooth technologies used in ______",
         options: ["Wireless keyboard", "Wireless mouse", "Headsets", "All of the mentioned"],
         answer: 3,
         keyword: "Bluetooth"
+      },
+      {
+        q: "Where does the following hold in practice for guided vs unguided media?",
+        options: [
+          "Fiber is unguided.",
+          "Copper/fiber are guided; radio is unguided.",
+          "Radio is guided.",
+          "Copper is unguided."
+        ],
+        answer: 1,
+        keyword: "Transmission Media"
+      },
+      {
+        q: "The physical layer is responsible for ______",
+        options: ["Line coding", "Channel coding", "Modulation", "All of the mentioned"],
+        answer: 3,
+        keyword: "Physical Layer Tasks"
       },
       {
         q: "Which statement is correct about analog vs digital signal?",
@@ -152,7 +209,7 @@ window.question8= [
       {
         q: "Which of the following statements is TRUE for optical fiber?",
         options: [
-          "All of the mentioned", // Note: Refers to Bandwidth/Distance/Cost
+          "All of the mentioned",
           "Large bandwidth",
           "Long distance transmission",
           "The cost of communication is increasingly independent of distance"
@@ -161,42 +218,42 @@ window.question8= [
         keyword: "Optical Fiber"
       },
       {
+        q: "Which of the following is NOT a characteristic of digital signals?",
+        options: ["Continuous wave", "Discrete levels", "Binary values", "More immune to noise"],
+        answer: 0,
+        keyword: "Digital Signal Char"
+      },
+      {
+        q: "Which of the following is NOT a factor that affects the quality of a signal?",
+        options: ["Attenuation", "Interference", "Crosstalk", "Bandwidth"],
+        answer: 3,
+        keyword: "Signal Quality Factors"
+      },
+      {
         q: "A single channel is shared by multiple sources of signals by ______",
         options: ["Analog modulation", "Digital modulation", "Multiplexing", "Phase modulation"],
         answer: 2,
         keyword: "Multiplexing Definition"
-      },
-      {
-        q: "What type of cable is commonly used for Ethernet networks?",
-        options: ["Coaxial cable", "Fiber optic cable", "Twisted pair cable", "Serial cable"],
-        answer: 2,
-        keyword: "Twisted Pair"
       }
     ]
   },
 
-  /* ================= SECTION 3: DATA LINK LAYER ================= */
+  /* ================= SECTION 3: TẦNG LIÊN KẾT DỮ LIỆU (DATA LINK) ================= */
   {
-    section: "3. Data Link Layer (Framing & Access)",
+    section: "3. Tầng Liên kết dữ liệu & Ethernet",
     cheatSheet: [
-      { term: "Data Link Layer", def: "Framing, Error Control, Flow Control, MAC Addressing." },
-      { term: "Switch", def: "Layer 2 device, breaks collision domains." },
-      { term: "CSMA/CD", def: "Ethernet access method (Listen before talk, detect collisions)." },
-      { term: "CRC", def: "Cyclic Redundancy Check (Error detection)." },
-      { term: "Sublayers", def: "LLC (Logical Link Control) & MAC (Media Access Control)." }
+      { term: "Framing", def: "Đóng gói dữ liệu thành khung (Frame)." },
+      { term: "MAC Address", def: "Địa chỉ vật lý (48-bit/6 octets)." },
+      { term: "CSMA/CD", def: "Cơ chế truy cập Ethernet: Nghe trước khi nói, phát hiện xung đột." },
+      { term: "Switch", def: "Thiết bị L2: Giảm xung đột (collision), nhưng không chặn quảng bá (broadcast)." },
+      { term: "Stop-and-Wait", def: "Gửi 1 khung, chờ ACK rồi mới gửi tiếp." }
     ],
     questions: [
-      {
-        q: "The Data Link Layer of the OSI model has ______ sublayers.",
-        options: ["1", "2", "3", "4"],
-        answer: 1,
-        keyword: "Data Link Sublayers"
-      },
       {
         q: "Which of the following tasks is NOT done by data link layer?",
         options: ["Framing", "Error control", "Flow control", "Routing"],
         answer: 3,
-        keyword: "Data Link Functions"
+        keyword: "Data Link NOT Task"
       },
       {
         q: "Which OSI layer is dividing the transmitted packet into frames?",
@@ -213,18 +270,30 @@ window.question8= [
           "They replace TCP."
         ],
         answer: 2,
-        keyword: "LLC vs MAC"
+        keyword: "LLC & MAC"
       },
       {
-        q: "Which statement is correct about collision vs broadcast domain?",
+        q: "Which type of network covers a small geographical area, such as an office or building?",
+        options: ["LAN", "MAN", "WAN", "SAN"],
+        answer: 0,
+        keyword: "LAN Definition"
+      },
+      {
+        q: "What type of cable is commonly used for Ethernet networks?",
+        options: ["Coaxial cable", "Fiber optic cable", "Twisted pair cable", "Serial cable"],
+        answer: 2,
+        keyword: "Ethernet Cable"
+      },
+      {
+        q: "What is the color code for the T568A standard?",
         options: [
-          "Hubs split broadcasts.",
-          "Switching reduces collisions; routers split broadcasts.",
-          "Routers merge broadcasts.",
-          "Switches merge collision domains."
+          "Green/White - Green - Orange/White - Blue...",
+          "Orange/White - Orange - Green/White - Blue...",
+          "Blue - Blue/White...",
+          "Brown - Brown/White..."
         ],
-        answer: 1,
-        keyword: "Collision Domains"
+        answer: 0,
+        keyword: "T568A Standard"
       },
       {
         q: "Which statement is correct about parity & checksum?",
@@ -235,7 +304,7 @@ window.question8= [
           "Replace CRC in Wi-Fi."
         ],
         answer: 1,
-        keyword: "Parity & Checksum"
+        keyword: "Error Detection"
       },
       {
         q: "Which statement is correct about stop-and-wait, ARQ?",
@@ -246,80 +315,102 @@ window.question8= [
           "ACK/timeout trigger retransmissions."
         ],
         answer: 3,
-        keyword: "ARQ"
+        keyword: "ARQ Mechanism"
+      },
+      {
+        q: "Which statement is correct about framing methods?",
+        options: [
+          "Framing uses IP only.",
+          "Byte/bit stuffing and coding violations mark frames.",
+          "Framing removes headers.",
+          "Framing encrypts payloads."
+        ],
+        answer: 1,
+        keyword: "Framing Methods"
+      },
+      {
+        q: "Which statement is correct about CRC purpose?",
+        options: [
+          "Allocates IPs.",
+          "Detects burst errors via generator polynomial.",
+          "Controls congestion.",
+          "Finds shortest paths."
+        ],
+        answer: 1,
+        keyword: "CRC Purpose"
       },
       {
         q: "Which flow control mechanism requires the sender to wait for an acknowledgment after sending each individual frame?",
         options: ["Go-Back-N", "Selective Repeat", "Stop-and-Wait", "Sliding Window"],
         answer: 2,
-        keyword: "Stop-and-Wait"
+        keyword: "Stop-and-Wait Flow"
       },
       {
-        q: "CRC stands for ______",
+        q: "CRC is ______",
         options: ["Cyclic redundancy check", "Code repeat check", "Cyclic repeat code", "Code redundancy check"],
         answer: 0,
-        keyword: "CRC Definition"
+        keyword: "CRC Fullname"
       },
       {
-        q: "Which of the following is a common method of accessing the network in the network access layer (Ethernet)?",
+        q: "Which of the following is a common method of accessing the network in the network access layer?",
         options: ["CSMA/CD", "Circuit switching", "Message switching", "Packet switching"],
         answer: 0,
-        keyword: "CSMA/CD"
+        keyword: "CSMA/CD Access"
+      },
+      {
+        q: "Which of the following is NOT a characteristic of the Ethernet protocol?",
+        options: [
+          "Uses carrier sense multiple access with collision detection (CSMA/CD)",
+          "Supports half-duplex and full-duplex transmission",
+          "Operates at the physical and data link layers",
+          "Uses a token-passing access method"
+        ],
+        answer: 3,
+        keyword: "Ethernet Characteristics"
+      },
+      {
+        q: "Which of the following tasks is NOT done by data link layer? (Duplicate Check)",
+        options: ["Framing", "Error control", "Flow control", "Channel coding"],
+        answer: 3,
+        keyword: "Data Link vs Physical"
+      },
+      {
+        q: "Which of the following is NOT a function of the network access layer?",
+        options: ["Flow control", "Error control", "Access control", "Packet routing"],
+        answer: 3,
+        keyword: "Network Access Func"
       },
       {
         q: "Frame has error detection at the ______",
         options: ["Physical layer", "Data link layer", "Network layer", "Session layer"],
         answer: 1,
-        keyword: "Error Detection Layer"
+        keyword: "Frame Error Detect"
+      },
+      {
+        q: "Which statement is correct about collision vs broadcast domain?",
+        options: [
+          "Hubs split broadcasts.",
+          "Switching reduces collisions; routers split broadcasts.",
+          "Routers merge broadcasts.",
+          "Switches merge collision domains."
+        ],
+        answer: 1,
+        keyword: "Collision/Broadcast Domain"
       }
     ]
   },
 
-  /* ================= SECTION 4: NETWORK LAYER & ROUTING ================= */
+  /* ================= SECTION 4: TẦNG MẠNG (NETWORK LAYER - IP/ARP) ================= */
   {
-    section: "4. Network Layer (IP, ARP, Routing)",
+    section: "4. Tầng Mạng (IP, ARP, Routing)",
     cheatSheet: [
-      { term: "Router", def: "Layer 3 device, forwards packets based on IP, breaks broadcast domains." },
-      { term: "ARP", def: "Resolves IP address to MAC address within a LAN." },
-      { term: "ICMP", def: "Error reporting and diagnostics (Ping)." },
-      { term: "Routing", def: "Determining best path for packets." },
-      { term: "IPv4", def: "32-bit address (4 octets)." }
+      { term: "ARP", def: "Address Resolution Protocol: Ánh xạ IP -> MAC." },
+      { term: "IPv4", def: "Địa chỉ 32-bit (4 octets)." },
+      { term: "ICMP", def: "Internet Control Message Protocol: Báo lỗi và chẩn đoán (Ping)." },
+      { term: "Routing", def: "Định tuyến: Tìm đường đi tốt nhất." },
+      { term: "Forwarding", def: "Chuyển tiếp: Đẩy gói tin từ đầu vào sang đầu ra." }
     ],
     questions: [
-      {
-        q: "Where does the following hold in practice for end systems vs. access networks?",
-        options: [
-          "Access networks connect end systems to edge routers.",
-          "End systems route between ISPs.",
-          "Core networks connect to mice.",
-          "Access networks are only wireless."
-        ],
-        answer: 0,
-        keyword: "Access Networks"
-      },
-      {
-        q: "A ______ is a device that forwards packets between networks by processing the routing information.",
-        options: ["Bridge", "Firewall", "Router", "Hub"],
-        answer: 2,
-        keyword: "Router Definition"
-      },
-      {
-        q: "When is the following true about delay, loss, throughput?",
-        options: [
-          "Loss cannot happen in routers.",
-          "Delay never depends on load.",
-          "Throughput equals bandwidth always.",
-          "Queueing can cause delay and packet loss."
-        ],
-        answer: 3,
-        keyword: "Network Performance"
-      },
-      {
-        q: "Which of the following device is used to connect two different networks?",
-        options: ["Hub", "Switch", "Router", "Repeater"],
-        answer: 2,
-        keyword: "Connecting Device"
-      },
       {
         q: "What is the primary function of the Address Resolution Protocol (ARP)?",
         options: [
@@ -343,6 +434,17 @@ window.question8= [
         keyword: "ARP Role"
       },
       {
+        q: "Where does the following hold in practice for Device behavior with ARP role on LAN?",
+        options: [
+          "Resolves IP to MAC within a LAN.",
+          "Resolves names to IPs.",
+          "Routes between ASes.",
+          "Encrypts Ethernet frames."
+        ],
+        answer: 0,
+        keyword: "Device ARP"
+      },
+      {
         q: "Which process does a router use to determine the best path for a packet to travel across multiple networks?",
         options: ["Forwarding", "Switching", "Routing", "Filtering"],
         answer: 2,
@@ -363,20 +465,20 @@ window.question8= [
           "Error reporting and diagnostics (e.g., ping)."
         ],
         answer: 3,
-        keyword: "ICMP"
+        keyword: "ICMP Function"
       }
     ]
   },
 
-  /* ================= SECTION 5: TRANSPORT & APPLICATION LAYER ================= */
+  /* ================= SECTION 5: TẦNG GIAO VẬN & ỨNG DỤNG (TRANSPORT/APP) ================= */
   {
-    section: "5. Transport & Application Layers",
+    section: "5. Tầng Giao vận & Ứng dụng",
     cheatSheet: [
-      { term: "Transport Layer", def: "End-to-end communication, Reliability (TCP), Flow Control." },
-      { term: "TCP Handshake", def: "SYN -> SYN-ACK -> ACK (3-way)." },
-      { term: "DNS", def: "Domain Name System (Port 53), maps Names to IPs." },
-      { term: "SMTP", def: "Simple Mail Transfer Protocol (Port 25)." },
-      { term: "HTTPS", def: "Secure HTTP, uses TLS/SSL (Port 443)." }
+      { term: "TCP", def: "Giao thức tin cậy, hướng kết nối, bắt tay 3 bước (SYN, SYN-ACK, ACK)." },
+      { term: "UDP", def: "Giao thức không kết nối, nhanh nhưng không đảm bảo." },
+      { term: "Ports", def: "FTP(20/21), SSH(22), SMTP(25), DNS(53), HTTP(80), HTTPS(443)." },
+      { term: "Cookies/Session", def: "Duy trì trạng thái người dùng (Stateful) trên nền HTTP (Stateless)." },
+      { term: "HTTPS", def: "Bảo mật HTTP bằng mã hóa TLS/SSL." }
     ],
     questions: [
       {
@@ -394,13 +496,13 @@ window.question8= [
           "ACK only."
         ],
         answer: 2,
-        keyword: "3-Way Handshake"
+        keyword: "TCP 3-Way Handshake"
       },
       {
         q: "Which of the following services uses TCP port 25?",
         options: ["FTP", "SSH", "SMTP", "DNS"],
         answer: 2,
-        keyword: "SMTP Port"
+        keyword: "Port 25 (SMTP)"
       },
       {
         q: "Which statement is correct about cookies & sessions?",
@@ -411,11 +513,16 @@ window.question8= [
           "TLS required for cookies."
         ],
         answer: 1,
-        keyword: "Cookies & Sessions"
+        keyword: "Cookies/Sessions"
       },
       {
         q: "Which protection applies when using HTTPS for sessions?",
-        options: ["Store IDs in routers", "Encrypt traffic with TLS", "Turn off cookies", "Change IP address"],
+        options: [
+          "Store IDs in routers",
+          "Encrypt traffic with TLS",
+          "Turn off cookies",
+          "Change IP address"
+        ],
         answer: 1,
         keyword: "HTTPS Security"
       },
@@ -423,7 +530,7 @@ window.question8= [
         q: "Which port is used where DNS typically runs?",
         options: ["Port 21", "Port 25", "Port 53", "Port 80"],
         answer: 2,
-        keyword: "DNS Port"
+        keyword: "Port 53 (DNS)"
       }
     ]
   }
