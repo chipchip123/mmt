@@ -1,346 +1,243 @@
-window.question7 = [
+window.question8 = [
 
 /* ================= SECTION 1 ================= */
 {
-  section: "1. Application Layer Overview",
+  section: "1. Networking Basics & OSI Model",
   cheatSheet: [
-    { term: "Application Layer", def: "Provides network services to end-user applications" },
-    { term: "Network Application", def: "Application that communicates over a network" },
-    { term: "End System", def: "Host running application processes" },
-    { term: "Process", def: "Program running within a host" },
-    { term: "Message", def: "Data exchanged between processes" }
+    { term: "Packet Switching", def: "Shares network resources dynamically among packets" },
+    { term: "Circuit Switching", def: "Reserves dedicated bandwidth for entire session" },
+    { term: "Protocol", def: "Rules defining message format, order, and actions" },
+    { term: "OSI Model", def: "Seven-layer reference model for network communication" }
   ],
   questions: [
     {
-      q: "Which OSI layer provides services to end-user applications?",
+      q: "Which characteristic best describes packet switching?",
+      options: [
+        "Dedicated bandwidth for entire session",
+        "Resources shared dynamically among packets",
+        "No buffering is required",
+        "Uses fixed paths only"
+      ],
+      answer: 1,
+      keyword: "Packet Switching"
+    },
+    {
+      q: "Which OSI layer is responsible for routing and logical addressing?",
       options: [
         "Transport layer",
         "Network layer",
-        "Application layer",
+        "Data Link layer",
         "Session layer"
       ],
-      answer: 2,
-      keyword: "Application Layer"
-    },
-    {
-      q: "An application that communicates over a network is called:",
-      options: [
-        "Protocol",
-        "Network application",
-        "Process",
-        "Socket"
-      ],
       answer: 1,
-      keyword: "Network Application"
+      keyword: "Network Layer"
     },
     {
-      q: "Applications run on which system?",
+      q: "Which device forwards packets between different networks?",
       options: [
-        "Router",
+        "Hub",
         "Switch",
-        "End system",
-        "Firewall"
+        "Router",
+        "Repeater"
       ],
       answer: 2,
-      keyword: "End System"
+      keyword: "Router"
     },
     {
-      q: "A program running within a host is called:",
+      q: "Protocols are best described as:",
       options: [
-        "Protocol",
-        "Process",
-        "Thread",
-        "Socket"
+        "Hardware specifications",
+        "Rules governing communication",
+        "Physical connectors",
+        "Routing tables"
       ],
       answer: 1,
-      keyword: "Process"
-    },
-    {
-      q: "Data exchanged between processes is called:",
-      options: [
-        "Segment",
-        "Message",
-        "Frame",
-        "Packet"
-      ],
-      answer: 1,
-      keyword: "Message"
+      keyword: "Protocol"
     }
   ]
 },
 
 /* ================= SECTION 2 ================= */
 {
-  section: "2. Application Architectures",
+  section: "2. Physical & Data Link Layer",
   cheatSheet: [
-    { term: "Client-Server Architecture", def: "Server provides services to clients" },
-    { term: "Peer-to-Peer Architecture", def: "Peers communicate directly with each other" },
-    { term: "Server", def: "Always-on host providing services" },
-    { term: "Client", def: "Requests services from server" },
-    { term: "Peer", def: "End system in P2P architecture" }
+    { term: "Physical Layer", def: "Transmits raw bits over physical medium" },
+    { term: "Data Link Layer", def: "Provides framing, error detection, and flow control" },
+    { term: "Framing", def: "Encapsulating bits into frames" },
+    { term: "Line Coding", def: "Representation of bits as signals" }
   ],
   questions: [
     {
-      q: "Architecture where server provides services is:",
+      q: "Which layer handles framing and error detection?",
       options: [
-        "Peer-to-peer",
-        "Client-server",
-        "Hybrid",
-        "Broadcast"
+        "Physical layer",
+        "Network layer",
+        "Transport layer",
+        "Data Link layer"
+      ],
+      answer: 3,
+      keyword: "Data Link Layer"
+    },
+    {
+      q: "Which task does NOT belong to the data link layer?",
+      options: [
+        "Framing",
+        "Error control",
+        "Flow control",
+        "Routing"
+      ],
+      answer: 3,
+      keyword: "Routing"
+    },
+    {
+      q: "Manchester encoding is an example of:",
+      options: [
+        "Routing algorithm",
+        "Line coding",
+        "Error correction",
+        "Multiplexing"
       ],
       answer: 1,
-      keyword: "Client-Server Architecture"
-    },
-    {
-      q: "Architecture where peers communicate directly is:",
-      options: [
-        "Client-server",
-        "Peer-to-peer",
-        "Centralized",
-        "Hierarchical"
-      ],
-      answer: 1,
-      keyword: "Peer-to-Peer Architecture"
-    },
-    {
-      q: "Always-on host that provides services is called:",
-      options: [
-        "Client",
-        "Peer",
-        "Server",
-        "Router"
-      ],
-      answer: 2,
-      keyword: "Server"
-    },
-    {
-      q: "Host that requests services is called:",
-      options: [
-        "Server",
-        "Router",
-        "Client",
-        "Switch"
-      ],
-      answer: 2,
-      keyword: "Client"
-    },
-    {
-      q: "End system participating in P2P architecture is called:",
-      options: [
-        "Server",
-        "Client",
-        "Peer",
-        "Gateway"
-      ],
-      answer: 2,
-      keyword: "Peer"
+      keyword: "Line Coding"
     }
   ]
 },
 
 /* ================= SECTION 3 ================= */
 {
-  section: "3. HTTP Protocol",
+  section: "3. Signals, Transmission & Multiplexing",
   cheatSheet: [
-    { term: "HTTP", def: "HyperText Transfer Protocol" },
-    { term: "Web Server", def: "Server that stores and serves web objects" },
-    { term: "Web Client", def: "Browser that requests web objects" },
-    { term: "Stateless", def: "Server maintains no client state" },
-    { term: "Persistent Connection", def: "Multiple objects sent over a single TCP connection" }
+    { term: "Analog Signal", def: "Continuously varying signal" },
+    { term: "Digital Signal", def: "Discrete signal levels" },
+    { term: "Bandwidth", def: "Range of frequencies used by signal" },
+    { term: "Multiplexing", def: "Sharing one channel among multiple signals" }
   ],
   questions: [
     {
-      q: "HTTP stands for:",
+      q: "Which statement correctly compares analog and digital signals?",
       options: [
-        "Hyper Transfer Text Protocol",
-        "HyperText Transfer Protocol",
-        "High Transfer Text Protocol",
-        "Hyper Transport Transfer Protocol"
-      ],
-      answer: 1,
-      keyword: "HTTP"
-    },
-    {
-      q: "A browser acts as a:",
-      options: [
-        "Web server",
-        "Web client",
-        "Proxy",
-        "Router"
-      ],
-      answer: 1,
-      keyword: "Web Client"
-    },
-    {
-      q: "HTTP server maintains no information about past client requests is called:",
-      options: [
-        "Stateful",
-        "Reliable",
-        "Stateless",
-        "Persistent"
+        "Digital signals vary continuously",
+        "Analog signals have discrete levels",
+        "Analog signals vary continuously",
+        "Both are identical"
       ],
       answer: 2,
-      keyword: "Stateless"
+      keyword: "Analog Signal"
     },
     {
-      q: "Server that stores and serves web objects is:",
+      q: "Technique that allows multiple signals to share a single channel is:",
       options: [
-        "Web client",
-        "Web server",
-        "Proxy",
-        "Gateway"
+        "Switching",
+        "Routing",
+        "Multiplexing",
+        "Modulation"
       ],
-      answer: 1,
-      keyword: "Web Server"
-    },
-    {
-      q: "Persistent HTTP means:",
-      options: [
-        "One object per TCP connection",
-        "Multiple objects per TCP connection",
-        "No TCP usage",
-        "UDP-based HTTP"
-      ],
-      answer: 1,
-      keyword: "Persistent Connection"
+      answer: 2,
+      keyword: "Multiplexing"
     }
   ]
 },
 
 /* ================= SECTION 4 ================= */
 {
-  section: "4. DNS Protocol",
+  section: "4. Error Detection & Flow Control",
   cheatSheet: [
-    { term: "DNS", def: "Domain Name System" },
-    { term: "Domain Name", def: "Human-readable host name" },
-    { term: "IP Address Mapping", def: "Mapping domain names to IP addresses" },
-    { term: "DNS Server", def: "Server that resolves domain names" },
-    { term: "Hierarchical", def: "Distributed and hierarchical naming system" }
+    { term: "Parity Bit", def: "Simple error detection method" },
+    { term: "Checksum", def: "Error detection using sum of bits" },
+    { term: "CRC", def: "Cyclic Redundancy Check using polynomial division" },
+    { term: "ARQ", def: "Automatic Repeat reQuest" }
   ],
   questions: [
     {
-      q: "DNS stands for:",
+      q: "Which error detection method is most powerful?",
       options: [
-        "Dynamic Name System",
-        "Domain Name System",
-        "Distributed Network Service",
-        "Data Name Service"
-      ],
-      answer: 1,
-      keyword: "DNS"
-    },
-    {
-      q: "DNS maps domain names to:",
-      options: [
-        "MAC addresses",
-        "IP addresses",
-        "Port numbers",
-        "URLs"
-      ],
-      answer: 1,
-      keyword: "IP Address Mapping"
-    },
-    {
-      q: "Human-readable host name is called:",
-      options: [
-        "IP address",
-        "Domain name",
-        "Port",
-        "Socket"
-      ],
-      answer: 1,
-      keyword: "Domain Name"
-    },
-    {
-      q: "Server that resolves domain names is:",
-      options: [
-        "Web server",
-        "DNS server",
-        "Mail server",
-        "Proxy"
-      ],
-      answer: 1,
-      keyword: "DNS Server"
-    },
-    {
-      q: "DNS system structure is:",
-      options: [
-        "Centralized",
-        "Flat",
-        "Hierarchical",
-        "Random"
+        "Parity bit",
+        "Checksum",
+        "CRC",
+        "Hamming code"
       ],
       answer: 2,
-      keyword: "Hierarchical"
+      keyword: "CRC"
+    },
+    {
+      q: "Stop-and-Wait protocol requires:",
+      options: [
+        "Multiple frames without ACK",
+        "ACK for each transmitted frame",
+        "Sliding window",
+        "No retransmission"
+      ],
+      answer: 1,
+      keyword: "Stop-and-Wait"
+    },
+    {
+      q: "ARQ is used for:",
+      options: [
+        "Routing packets",
+        "Error detection only",
+        "Error recovery via retransmission",
+        "Flow control only"
+      ],
+      answer: 2,
+      keyword: "ARQ"
     }
   ]
 },
 
 /* ================= SECTION 5 ================= */
 {
-  section: "5. Email and File Transfer Protocols",
+  section: "5. Network & Transport Layer Protocols",
   cheatSheet: [
-    { term: "SMTP", def: "Simple Mail Transfer Protocol" },
-    { term: "POP3", def: "Post Office Protocol version 3" },
-    { term: "IMAP", def: "Internet Message Access Protocol" },
-    { term: "FTP", def: "File Transfer Protocol" },
-    { term: "Mail Server", def: "Server that handles email services" }
+    { term: "IP", def: "Provides logical addressing and packet delivery" },
+    { term: "ARP", def: "Maps IP addresses to MAC addresses" },
+    { term: "ICMP", def: "Reports errors and diagnostics" },
+    { term: "TCP", def: "Reliable, connection-oriented transport protocol" },
+    { term: "UDP", def: "Unreliable, connectionless transport protocol" }
   ],
   questions: [
     {
-      q: "Protocol used to send email is:",
+      q: "What is the main function of ARP?",
       options: [
-        "POP3",
-        "IMAP",
-        "SMTP",
-        "FTP"
+        "Routing packets",
+        "Mapping IP to MAC address",
+        "Error reporting",
+        "Flow control"
+      ],
+      answer: 1,
+      keyword: "ARP"
+    },
+    {
+      q: "Which protocol is used for error reporting and diagnostics?",
+      options: [
+        "IP",
+        "TCP",
+        "UDP",
+        "ICMP"
+      ],
+      answer: 3,
+      keyword: "ICMP"
+    },
+    {
+      q: "Which sequence establishes a TCP connection?",
+      options: [
+        "ACK, SYN, FIN",
+        "SYN, SYN-ACK, ACK",
+        "FIN, ACK, SYN",
+        "ACK only"
+      ],
+      answer: 1,
+      keyword: "TCP Three-Way Handshake"
+    },
+    {
+      q: "Which transport protocol provides reliability?",
+      options: [
+        "UDP",
+        "IP",
+        "TCP",
+        "ICMP"
       ],
       answer: 2,
-      keyword: "SMTP"
-    },
-    {
-      q: "Protocol used to retrieve email from server is:",
-      options: [
-        "SMTP",
-        "FTP",
-        "POP3",
-        "HTTP"
-      ],
-      answer: 2,
-      keyword: "POP3"
-    },
-    {
-      q: "Protocol that allows managing emails directly on the server is:",
-      options: [
-        "POP3",
-        "IMAP",
-        "SMTP",
-        "DNS"
-      ],
-      answer: 1,
-      keyword: "IMAP"
-    },
-    {
-      q: "Protocol used for file transfer is:",
-      options: [
-        "HTTP",
-        "FTP",
-        "SMTP",
-        "DNS"
-      ],
-      answer: 1,
-      keyword: "FTP"
-    },
-    {
-      q: "Email services are handled by:",
-      options: [
-        "Web server",
-        "Mail server",
-        "DNS server",
-        "Proxy"
-      ],
-      answer: 1,
-      keyword: "Mail Server"
+      keyword: "TCP"
     }
   ]
 }
