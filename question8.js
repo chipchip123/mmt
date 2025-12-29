@@ -1,53 +1,77 @@
-window.question8 = [
+window.questionReview = [
 
-  /* ================= SECTION 1: NETWORK BASICS & SWITCHING ================= */
+  /* ================= SECTION 1: NETWORK BASICS & MODELS ================= */
   {
-    section: "1. Network Basics & Switching",
+    section: "1. Network Basics & OSI/TCP Models",
     cheatSheet: [
-      { term: "Packet Switching", def: "Data is split into packets, sharing links dynamically (flexible)." },
-      { term: "Circuit Switching", def: "Reserves resources (bandwidth) for the entire session (fixed)." },
-      { term: "Protocol", def: "Set of rules governing data communication." },
-      { term: "OSI Model", def: "Open Systems Interconnection model with 7 layers." }
+      { term: "Packet Switching", def: "Shares network resources dynamically (bursty traffic)." },
+      { term: "Circuit Switching", def: "Reserves fixed bandwidth/resources (guaranteed quality)." },
+      { term: "Protocol", def: "Defines format, order, and actions of messages." },
+      { term: "LAN", def: "Local Area Network (small geo area like an office)." },
+      { term: "ISP", def: "Internet Service Provider (Network of networks)." }
     ],
     questions: [
       {
-        q: "Packet switching is best described as:",
+        q: "Which statement is correct about packet vs. circuit switching?",
         options: [
-          "Reserving resources for the entire session",
-          "Sharing network links among packets dynamically",
-          "Using fixed bandwidth per connection",
-          "Dropping idle connections"
+          "Circuit switching shares on demand only.",
+          "Packet switching shares links among bursts.",
+          "Packet switching reserves fixed bandwidth.",
+          "Circuit switching drops idle calls."
         ],
         answer: 1,
         keyword: "Packet Switching"
       },
       {
-        q: "Circuit switching differs from packet switching because it:",
+        q: "Which statement is correct about protocol layers & service models?",
         options: [
-          "Shares links dynamically",
-          "Reserves dedicated resources",
-          "Uses packets only",
-          "Does not require setup"
+          "Layers are cable colors.",
+          "Layers are device brands.",
+          "Layers define functions and service interfaces.",
+          "Layers store user accounts."
         ],
-        answer: 1,
-        keyword: "Circuit Switching"
-      },
-      {
-        q: "A protocol defines:",
-        options: [
-          "Cable length",
-          "Rules for message format and order",
-          "Device manufacturers",
-          "User permissions"
-        ],
-        answer: 1,
-        keyword: "Protocol"
-      },
-      {
-        q: "The OSI model consists of how many layers?",
-        options: ["5", "6", "7", "8"],
         answer: 2,
-        keyword: "OSI Model"
+        keyword: "Protocol Layers"
+      },
+      {
+        q: "In OSI model, addressing and routing functions of the system are provided by ______",
+        options: ["Application layer", "Transport layer", "Network layer", "Session layer"],
+        answer: 2,
+        keyword: "Routing Layer"
+      },
+      {
+        q: "Which statement is correct about what is a protocol?",
+        options: [
+          "Format, order, and actions on messages.",
+          "Physical plug shape only.",
+          "Encryption keys only.",
+          "MAC addresses only."
+        ],
+        answer: 0,
+        keyword: "Protocol Definition"
+      },
+      {
+        q: "Which statement is correct about Device behavior with Internet = network of networks?",
+        options: [
+          "Single central ISP runs all routers.",
+          "Interconnected ISPs provide global reach.",
+          "Only LANs, no WANs involved.",
+          "Apps define routing, not IP."
+        ],
+        answer: 1,
+        keyword: "Internet Structure"
+      },
+      {
+        q: "The TCP/IP model does not have ______",
+        options: ["Application layer", "Transport layer", "Network layer", "Session layer"],
+        answer: 3,
+        keyword: "TCP/IP Model"
+      },
+      {
+        q: "Which type of network covers a small geographical area, such as an office or building?",
+        options: ["Local area network (LAN)", "Metropolitan area network (MAN)", "Wide area network (WAN)", "Storage area network (SAN)"],
+        answer: 0,
+        keyword: "LAN"
       }
     ]
   },
@@ -56,472 +80,350 @@ window.question8 = [
   {
     section: "2. Physical Layer & Signals",
     cheatSheet: [
-      { term: "Physical Layer", def: "Transmits raw bits over a medium." },
-      { term: "Bandwidth", def: "Measured in Hertz (Hz), the range of frequencies." },
+      { term: "Physical Layer", def: "Transmits raw bits, handles modulation and line coding." },
+      { term: "Manchester Encoding", def: "Embeds a clock transition in each bit (for synchronization)." },
+      { term: "Fiber Optic", def: "High bandwidth, immune to electromagnetic interference." },
       { term: "Multiplexing", def: "Sharing a channel (FDM: Frequency, TDM: Time)." },
-      { term: "Digital Signal", def: "Discrete levels (0s and 1s)." },
-      { term: "Manchester Encoding", def: "Line coding with a transition in the middle of each bit." }
+      { term: "Hub", def: "Layer 1 device, broadcasts to all ports." }
     ],
     questions: [
       {
-        q: "The physical layer is responsible for:",
-        options: ["Routing", "Framing", "Transmitting raw bits", "Encryption"],
-        answer: 2,
-        keyword: "Physical Layer"
-      },
-      {
-        q: "Which layer converts data into signals suitable for transmission?",
-        options: ["Physical", "Data Link", "Network", "Transport"],
+        q: "Which layer of the OSI model does Hub work in?",
+        options: ["Physical layer", "Data link layer", "Network layer", "Transport layer"],
         answer: 0,
-        keyword: "Signal Conversion"
+        keyword: "Hub Layer"
       },
       {
-        q: "Line coding refers to:",
-        options: ["Mapping bits to signals", "Encrypting data", "Routing packets", "Detecting errors"],
+        q: "The physical layer translates logical communication requests from the ______ into hardware operations.",
+        options: ["Data link layer", "Network layer", "Transport layer", "Application layer"],
         answer: 0,
-        keyword: "Line Coding"
+        keyword: "Physical Layer Interaction"
       },
       {
-        q: "Manchester encoding is characterized by:",
-        options: ["No transitions", "A transition in the middle of each bit", "Frequency hopping", "Phase-only modulation"],
-        answer: 1,
-        keyword: "Manchester Encoding"
-      },
-      {
-        q: "Analog signals are:",
-        options: ["Discrete", "Continuous", "Binary", "Packet-based"],
-        answer: 1,
-        keyword: "Analog Signal"
-      },
-      {
-        q: "Digital signals are characterized by:",
-        options: ["Infinite values", "Discrete levels", "Continuous waveforms", "Noise only"],
-        answer: 1,
-        keyword: "Digital Signal"
-      },
-      {
-        q: "Bandwidth is measured in:",
-        options: ["Bytes", "Seconds", "Hertz", "Volts"],
+        q: "Which statement is correct about Device behavior with FDM vs TDM in access?",
+        options: [
+          "TDM equals frequency bands.",
+          "FDM equals packetization.",
+          "FDM splits by frequency; TDM by time slots.",
+          "Both require token ring."
+        ],
         answer: 2,
-        keyword: "Bandwidth"
-      },
-      {
-        q: "Multiplexing is used to:",
-        options: ["Encrypt data", "Share a single channel among multiple signals", "Detect errors", "Route packets"],
-        answer: 1,
         keyword: "Multiplexing"
       },
       {
-        q: "Frequency Division Multiplexing (FDM) separates signals by:",
-        options: ["Time slots", "Frequency bands", "Packet size", "Voltage levels"],
+        q: "When is the following true about period (T), frequency (f)?",
+        options: [
+          "f=T",
+          "f=1/T",
+          "T=2πf",
+          "Phase sets data rate only."
+        ],
         answer: 1,
-        keyword: "FDM"
+        keyword: "Frequency Formula"
       },
       {
-        q: "Time Division Multiplexing (TDM) separates signals by:",
-        options: ["Frequency", "Time slots", "Phase", "Amplitude"],
-        answer: 1,
-        keyword: "TDM"
+        q: "Which statement is correct about line coding: NRZ, Manchester?",
+        options: [
+          "Manchester changes frequency bands.",
+          "NRZ always transitions.",
+          "Line coding is for routing.",
+          "Manchester embeds a clock transition each bit."
+        ],
+        answer: 3,
+        keyword: "Manchester Encoding"
       },
       {
-        q: "Which medium provides the highest bandwidth?",
-        options: ["Twisted pair", "Coaxial cable", "Optical fiber", "Radio waves"],
-        answer: 2,
+        q: "The Bluetooth technologies used in ______",
+        options: ["Wireless keyboard", "Wireless mouse", "Headsets", "All of the mentioned"],
+        answer: 3,
+        keyword: "Bluetooth"
+      },
+      {
+        q: "Which statement is correct about analog vs digital signal?",
+        options: [
+          "Analog uses packets only.",
+          "Analog varies smoothly; digital has discrete levels.",
+          "Digital has infinite amplitudes.",
+          "Both need bit stuffing."
+        ],
+        answer: 1,
+        keyword: "Analog vs Digital"
+      },
+      {
+        q: "Which of the following statements is TRUE for optical fiber?",
+        options: [
+          "All of the mentioned", // Note: Refers to Bandwidth/Distance/Cost
+          "Large bandwidth",
+          "Long distance transmission",
+          "The cost of communication is increasingly independent of distance"
+        ],
+        answer: 0,
         keyword: "Optical Fiber"
+      },
+      {
+        q: "A single channel is shared by multiple sources of signals by ______",
+        options: ["Analog modulation", "Digital modulation", "Multiplexing", "Phase modulation"],
+        answer: 2,
+        keyword: "Multiplexing Definition"
+      },
+      {
+        q: "What type of cable is commonly used for Ethernet networks?",
+        options: ["Coaxial cable", "Fiber optic cable", "Twisted pair cable", "Serial cable"],
+        answer: 2,
+        keyword: "Twisted Pair"
       }
     ]
   },
 
   /* ================= SECTION 3: DATA LINK LAYER ================= */
   {
-    section: "3. Data Link Layer (Framing & Error Control)",
+    section: "3. Data Link Layer (Framing & Access)",
     cheatSheet: [
-      { term: "Data Link Layer", def: "Handles framing, MAC addressing, and error detection." },
-      { term: "MAC Address", def: "Physical address used at Data Link layer." },
-      { term: "CRC", def: "Cyclic Redundancy Check, used for error detection." },
-      { term: "ARQ", def: "Automatic Repeat reQuest for retransmission." },
-      { term: "Go-Back-N", def: "Retransmits all frames after an error." }
+      { term: "Data Link Layer", def: "Framing, Error Control, Flow Control, MAC Addressing." },
+      { term: "Switch", def: "Layer 2 device, breaks collision domains." },
+      { term: "CSMA/CD", def: "Ethernet access method (Listen before talk, detect collisions)." },
+      { term: "CRC", def: "Cyclic Redundancy Check (Error detection)." },
+      { term: "Sublayers", def: "LLC (Logical Link Control) & MAC (Media Access Control)." }
     ],
     questions: [
       {
-        q: "Which layer performs framing?",
-        options: ["Physical", "Data Link", "Network", "Transport"],
+        q: "The Data Link Layer of the OSI model has ______ sublayers.",
+        options: ["1", "2", "3", "4"],
         answer: 1,
-        keyword: "Framing"
+        keyword: "Data Link Sublayers"
       },
       {
-        q: "Which task is NOT handled by the Data Link layer?",
-        options: ["Error detection", "Flow control", "Routing", "Framing"],
+        q: "Which of the following tasks is NOT done by data link layer?",
+        options: ["Framing", "Error control", "Flow control", "Routing"],
+        answer: 3,
+        keyword: "Data Link Functions"
+      },
+      {
+        q: "Which OSI layer is dividing the transmitted packet into frames?",
+        options: ["Data link layer", "Application layer", "Network layer", "Transport layer"],
+        answer: 0,
+        keyword: "Framing Layer"
+      },
+      {
+        q: "Which statement is correct about LLC vs MAC service?",
+        options: [
+          "Both are L3.",
+          "MAC above LLC.",
+          "LLC provides service interface above MAC.",
+          "They replace TCP."
+        ],
         answer: 2,
-        keyword: "Data Link Layer"
+        keyword: "LLC vs MAC"
       },
       {
-        q: "Which address is used at the Data Link layer?",
-        options: ["IP address", "Port number", "MAC address", "Domain name"],
-        answer: 2,
-        keyword: "MAC Address"
-      },
-      {
-        q: "CRC is primarily used for:",
-        options: ["Error correction", "Error detection", "Encryption", "Routing"],
+        q: "Which statement is correct about collision vs broadcast domain?",
+        options: [
+          "Hubs split broadcasts.",
+          "Switching reduces collisions; routers split broadcasts.",
+          "Routers merge broadcasts.",
+          "Switches merge collision domains."
+        ],
         answer: 1,
-        keyword: "CRC"
+        keyword: "Collision Domains"
       },
       {
-        q: "Parity checking can reliably detect:",
-        options: ["All burst errors", "Single-bit errors", "All errors", "No errors"],
+        q: "Which statement is correct about parity & checksum?",
+        options: [
+          "Always correct bursts.",
+          "Detect errors; do not correct bursts well.",
+          "Unused in networks.",
+          "Replace CRC in Wi-Fi."
+        ],
         answer: 1,
-        keyword: "Parity Bit"
+        keyword: "Parity & Checksum"
       },
       {
-        q: "Checksum is used to:",
-        options: ["Correct errors", "Detect errors", "Encrypt data", "Route packets"],
-        answer: 1,
-        keyword: "Checksum"
-      },
-      {
-        q: "Automatic Repeat reQuest (ARQ) is used for:",
-        options: ["Flow control", "Error detection only", "Retransmission of lost or corrupted frames", "Encryption"],
-        answer: 2,
+        q: "Which statement is correct about stop-and-wait, ARQ?",
+        options: [
+          "Sender never waits.",
+          "No ACKs are used.",
+          "Only forward error correction.",
+          "ACK/timeout trigger retransmissions."
+        ],
+        answer: 3,
         keyword: "ARQ"
       },
       {
-        q: "Stop-and-Wait protocol requires:",
-        options: ["No acknowledgments", "Acknowledgment after each frame", "Multiple frames sent without ACK", "Sliding window"],
-        answer: 1,
+        q: "Which flow control mechanism requires the sender to wait for an acknowledgment after sending each individual frame?",
+        options: ["Go-Back-N", "Selective Repeat", "Stop-and-Wait", "Sliding Window"],
+        answer: 2,
         keyword: "Stop-and-Wait"
       },
       {
-        q: "Which ARQ protocol retransmits all frames after an error?",
-        options: ["Selective Repeat", "Stop-and-Wait", "Go-Back-N", "Sliding Window"],
-        answer: 2,
-        keyword: "Go-Back-N"
+        q: "CRC stands for ______",
+        options: ["Cyclic redundancy check", "Code repeat check", "Cyclic repeat code", "Code redundancy check"],
+        answer: 0,
+        keyword: "CRC Definition"
       },
       {
-        q: "Selective Repeat differs from Go-Back-N because it:",
-        options: ["Retransmits only erroneous frames", "Retransmits all frames", "Does not use ACK", "Is used only in UDP"],
+        q: "Which of the following is a common method of accessing the network in the network access layer (Ethernet)?",
+        options: ["CSMA/CD", "Circuit switching", "Message switching", "Packet switching"],
         answer: 0,
-        keyword: "Selective Repeat"
+        keyword: "CSMA/CD"
+      },
+      {
+        q: "Frame has error detection at the ______",
+        options: ["Physical layer", "Data link layer", "Network layer", "Session layer"],
+        answer: 1,
+        keyword: "Error Detection Layer"
       }
     ]
   },
 
-  /* ================= SECTION 4: NETWORK LAYER ================= */
+  /* ================= SECTION 4: NETWORK LAYER & ROUTING ================= */
   {
-    section: "4. Network Layer (IP & Routing)",
+    section: "4. Network Layer (IP, ARP, Routing)",
     cheatSheet: [
-      { term: "Network Layer", def: "Routing and logical addressing (IP)." },
-      { term: "Router", def: "Device that forwards packets between networks." },
-      { term: "IP", def: "Connectionless, best-effort delivery protocol." },
-      { term: "ARP", def: "Maps IP address to MAC address." },
-      { term: "ICMP", def: "Used for error reporting and diagnostics (Ping)." }
+      { term: "Router", def: "Layer 3 device, forwards packets based on IP, breaks broadcast domains." },
+      { term: "ARP", def: "Resolves IP address to MAC address within a LAN." },
+      { term: "ICMP", def: "Error reporting and diagnostics (Ping)." },
+      { term: "Routing", def: "Determining best path for packets." },
+      { term: "IPv4", def: "32-bit address (4 octets)." }
     ],
     questions: [
       {
-        q: "Which OSI layer is responsible for routing packets?",
-        options: ["Data Link", "Transport", "Network", "Session"],
-        answer: 2,
-        keyword: "Network Layer"
+        q: "Where does the following hold in practice for end systems vs. access networks?",
+        options: [
+          "Access networks connect end systems to edge routers.",
+          "End systems route between ISPs.",
+          "Core networks connect to mice.",
+          "Access networks are only wireless."
+        ],
+        answer: 0,
+        keyword: "Access Networks"
       },
       {
-        q: "Which device forwards packets between different networks?",
+        q: "A ______ is a device that forwards packets between networks by processing the routing information.",
+        options: ["Bridge", "Firewall", "Router", "Hub"],
+        answer: 2,
+        keyword: "Router Definition"
+      },
+      {
+        q: "When is the following true about delay, loss, throughput?",
+        options: [
+          "Loss cannot happen in routers.",
+          "Delay never depends on load.",
+          "Throughput equals bandwidth always.",
+          "Queueing can cause delay and packet loss."
+        ],
+        answer: 3,
+        keyword: "Network Performance"
+      },
+      {
+        q: "Which of the following device is used to connect two different networks?",
         options: ["Hub", "Switch", "Router", "Repeater"],
         answer: 2,
-        keyword: "Router"
+        keyword: "Connecting Device"
       },
       {
-        q: "The Network layer is responsible for:",
-        options: ["End-to-end delivery", "Routing and logical addressing", "Framing", "Physical transmission"],
-        answer: 1,
-        keyword: "Network Layer"
+        q: "What is the primary function of the Address Resolution Protocol (ARP)?",
+        options: [
+          "To map an IP address to a MAC address",
+          "To map a Domain Name to an IP address",
+          "To route packets between different networks",
+          "To manage flow control between two nodes"
+        ],
+        answer: 0,
+        keyword: "ARP Function"
       },
       {
-        q: "Which layer is responsible for logical addressing?",
-        options: ["Data Link", "Network", "Transport", "Application"],
-        answer: 1,
-        keyword: "Logical Addressing"
-      },
-      {
-        q: "IP provides which type of service?",
-        options: ["Reliable and connection-oriented", "Reliable and connectionless", "Best-effort and connectionless", "Encrypted delivery"],
+        q: "Where does the following hold in practice for ARP role on LAN?",
+        options: [
+          "Routes between ASes.",
+          "Resolves names to IPs.",
+          "Resolves IP to MAC within a LAN.",
+          "Encrypts Ethernet frames."
+        ],
         answer: 2,
-        keyword: "IP"
+        keyword: "ARP Role"
       },
       {
-        q: "Which protocol maps an IP address to a MAC address?",
-        options: ["DNS", "ICMP", "ARP", "RARP"],
+        q: "Which process does a router use to determine the best path for a packet to travel across multiple networks?",
+        options: ["Forwarding", "Switching", "Routing", "Filtering"],
         answer: 2,
-        keyword: "ARP"
+        keyword: "Routing Process"
       },
       {
-        q: "ICMP is mainly used for:",
-        options: ["Data transfer", "Error reporting and diagnostics", "Routing updates", "Address resolution"],
+        q: "What is the length of an IPv4 address in terms of octets?",
+        options: ["2 octets", "4 octets", "6 octets", "8 octets"],
         answer: 1,
-        keyword: "ICMP"
+        keyword: "IPv4 Length"
       },
       {
-        q: "Which utility uses ICMP messages?",
-        options: ["FTP", "Ping", "SMTP", "DNS"],
-        answer: 1,
-        keyword: "Ping"
-      }
-    ]
-  },
-
-  /* ================= SECTION 5: TRANSPORT LAYER ================= */
-  {
-    section: "5. Transport Layer (TCP & UDP)",
-    cheatSheet: [
-      { term: "Transport Layer", def: "End-to-end communication and reliability." },
-      { term: "TCP", def: "Reliable, connection-oriented, uses 3-way handshake." },
-      { term: "UDP", def: "Unreliable, connectionless, faster than TCP." },
-      { term: "Port Number", def: "Identifies a specific process/application on a host." },
-      { term: "Flow Control", def: "Prevents sender from overwhelming receiver." }
-    ],
-    questions: [
-      {
-        q: "The Transport layer provides:",
-        options: ["Physical addressing", "End-to-end communication", "Routing", "Framing"],
-        answer: 1,
-        keyword: "Transport Layer"
-      },
-      {
-        q: "Which layer ensures reliable end-to-end delivery?",
-        options: ["Network", "Transport", "Data Link", "Application"],
-        answer: 1,
-        keyword: "Reliable Delivery"
-      },
-      {
-        q: "Which field identifies a process at the transport layer?",
-        options: ["IP address", "MAC address", "Port number", "Sequence number"],
-        answer: 2,
-        keyword: "Port Number"
-      },
-      {
-        q: "Which address uniquely identifies a process on a host?",
-        options: ["MAC address", "IP address", "Port number", "Sequence number"],
-        answer: 2,
-        keyword: "Process Identification"
-      },
-      {
-        q: "TCP is best described as:",
-        options: ["Unreliable and connectionless", "Reliable and connection-oriented", "Unreliable and connection-oriented", "Reliable and connectionless"],
-        answer: 1,
-        keyword: "TCP"
-      },
-      {
-        q: "UDP differs from TCP because UDP:",
-        options: ["Provides reliability", "Uses acknowledgments", "Is connectionless", "Uses congestion control"],
-        answer: 2,
-        keyword: "UDP"
-      },
-      {
-        q: "TCP connection establishment uses:",
-        options: ["Two-way handshake", "Three-way handshake", "Four-way handshake", "No handshake"],
-        answer: 1,
-        keyword: "TCP Handshake"
-      },
-      {
-        q: "Which protocol is faster but unreliable?",
-        options: ["TCP", "UDP", "ICMP", "ARP"],
-        answer: 1,
-        keyword: "UDP Speed"
-      },
-      {
-        q: "Which mechanism prevents a sender from overwhelming a receiver?",
-        options: ["Routing", "Flow control", "Multiplexing", "Line coding"],
-        answer: 1,
-        keyword: "Flow Control"
-      },
-      {
-        q: "Congestion control deals with:",
-        options: ["Receiver speed", "Network overload", "Bit errors", "Address resolution"],
-        answer: 1,
-        keyword: "Congestion Control"
-      },
-      {
-        q: "Which TCP mechanism handles congestion control?",
-        options: ["CRC", "Sliding window", "Slow start", "ARP"],
-        answer: 2,
-        keyword: "TCP Congestion Control"
-      },
-      {
-        q: "Which protocol uses sequence numbers and acknowledgments?",
-        options: ["UDP", "IP", "TCP", "ICMP"],
-        answer: 2,
-        keyword: "TCP Reliability"
-      },
-      {
-        q: "Which TCP flag is used to initiate a connection?",
-        options: ["ACK", "FIN", "SYN", "RST"],
-        answer: 2,
-        keyword: "TCP SYN"
-      },
-      {
-        q: "Which TCP flag is used to terminate a connection?",
-        options: ["ACK", "FIN", "SYN", "PSH"],
-        answer: 1,
-        keyword: "TCP FIN"
-      },
-      {
-        q: "Which protocol provides reliable, ordered delivery?",
-        options: ["UDP", "IP", "TCP", "ICMP"],
-        answer: 2,
-        keyword: "Reliable Transport"
-      }
-    ]
-  },
-
-  /* ================= SECTION 6: APPLICATION LAYER (WEB & DNS) ================= */
-  {
-    section: "6. Application Layer (Web & DNS)",
-    cheatSheet: [
-      { term: "DNS", def: "Domain Name System, maps Names to IP addresses." },
-      { term: "HTTP", def: "HyperText Transfer Protocol, stateless, Port 80." },
-      { term: "HTTPS", def: "Secure HTTP using TLS/SSL, Port 443." },
-      { term: "Session Layer", def: "Manages sessions." },
-      { term: "Presentation Layer", def: "Handles encryption and compression." }
-    ],
-    questions: [
-      {
-        q: "HTTP is classified as:",
-        options: ["Stateful protocol", "Stateless protocol", "Connectionless protocol", "Routing protocol"],
-        answer: 1,
-        keyword: "HTTP"
-      },
-      {
-        q: "HTTP typically uses which transport protocol?",
-        options: ["UDP", "ICMP", "TCP", "ARP"],
-        answer: 2,
-        keyword: "HTTP Transport"
-      },
-      {
-        q: "Which port number is used by HTTP?",
-        options: ["21", "25", "80", "443"],
-        answer: 2,
-        keyword: "HTTP Port"
-      },
-      {
-        q: "HTTPS differs from HTTP because it:",
-        options: ["Uses UDP", "Uses encryption (TLS/SSL)", "Is faster", "Uses port 21"],
-        answer: 1,
-        keyword: "HTTPS"
-      },
-      {
-        q: "Which port is used by HTTPS?",
-        options: ["80", "21", "25", "443"],
+        q: "Which statement is correct about ICMP function?",
+        options: [
+          "Address assignment.",
+          "Reliable data delivery.",
+          "Fragment reassembly.",
+          "Error reporting and diagnostics (e.g., ping)."
+        ],
         answer: 3,
-        keyword: "HTTPS Port"
-      },
-      {
-        q: "Which protocol is used for secure web communication?",
-        options: ["HTTP", "FTP", "HTTPS", "SMTP"],
-        answer: 2,
-        keyword: "Secure Web"
-      },
-      {
-        q: "DNS is used to:",
-        options: ["Map IP to MAC", "Map domain names to IP addresses", "Transfer files", "Send email"],
-        answer: 1,
-        keyword: "DNS"
-      },
-      {
-        q: "Which protocol is used for name resolution?",
-        options: ["ARP", "ICMP", "DNS", "FTP"],
-        answer: 2,
-        keyword: "Name Resolution"
-      },
-      {
-        q: "Which DNS server is the first point of contact for a client?",
-        options: ["Root server", "Authoritative server", "Local DNS server", "Top-level domain server"],
-        answer: 2,
-        keyword: "Local DNS"
-      },
-      {
-        q: "Which DNS server maintains mappings for a specific domain?",
-        options: ["Root DNS server", "Local DNS server", "Authoritative DNS server", "Caching DNS server"],
-        answer: 2,
-        keyword: "Authoritative DNS"
-      },
-      {
-        q: "Which layer is responsible for encryption and compression in OSI?",
-        options: ["Application", "Presentation", "Session", "Transport"],
-        answer: 1,
-        keyword: "Presentation Layer"
-      },
-      {
-        q: "Which OSI layer establishes, manages, and terminates sessions?",
-        options: ["Transport", "Network", "Session", "Presentation"],
-        answer: 2,
-        keyword: "Session Layer"
+        keyword: "ICMP"
       }
     ]
   },
 
-  /* ================= SECTION 7: APPLICATION LAYER (EMAIL & MGMT) ================= */
+  /* ================= SECTION 5: TRANSPORT & APPLICATION LAYER ================= */
   {
-    section: "7. Application Layer (Email, File & Management)",
+    section: "5. Transport & Application Layers",
     cheatSheet: [
-      { term: "SMTP", def: "Sending email." },
-      { term: "POP3/IMAP", def: "Retrieving email (IMAP manages on server)." },
-      { term: "FTP", def: "File Transfer Protocol." },
-      { term: "SSH", def: "Secure Shell for remote login (Encrypted)." },
-      { term: "SNMP", def: "Simple Network Management Protocol." }
+      { term: "Transport Layer", def: "End-to-end communication, Reliability (TCP), Flow Control." },
+      { term: "TCP Handshake", def: "SYN -> SYN-ACK -> ACK (3-way)." },
+      { term: "DNS", def: "Domain Name System (Port 53), maps Names to IPs." },
+      { term: "SMTP", def: "Simple Mail Transfer Protocol (Port 25)." },
+      { term: "HTTPS", def: "Secure HTTP, uses TLS/SSL (Port 443)." }
     ],
     questions: [
       {
-        q: "SMTP is mainly used for:",
-        options: ["Retrieving email", "Sending email", "Resolving domain names", "File transfer"],
+        q: "Which OSI layer is providing end-to-end communication with reliable service?",
+        options: ["Session layer", "Transport layer", "Network layer", "Data link layer"],
         answer: 1,
-        keyword: "SMTP"
+        keyword: "Reliable Transport"
       },
       {
-        q: "Which protocol is used by a mail client to retrieve emails from a server?",
-        options: ["SMTP", "FTP", "POP3", "SNMP"],
+        q: "When is the following true about 3-way handshake?",
+        options: [
+          "UDP handshakes first.",
+          "FIN starts connection.",
+          "SYN, SYN-ACK, ACK establish TCP.",
+          "ACK only."
+        ],
         answer: 2,
-        keyword: "POP3"
+        keyword: "3-Way Handshake"
       },
       {
-        q: "IMAP differs from POP3 because IMAP:",
-        options: ["Deletes emails after download", "Allows managing emails on the server", "Is used only for sending mail", "Uses UDP"],
+        q: "Which of the following services uses TCP port 25?",
+        options: ["FTP", "SSH", "SMTP", "DNS"],
+        answer: 2,
+        keyword: "SMTP Port"
+      },
+      {
+        q: "Which statement is correct about cookies & sessions?",
+        options: [
+          "Transport-layer state.",
+          "State via headers + client storage.",
+          "Router stores sessions.",
+          "TLS required for cookies."
+        ],
         answer: 1,
-        keyword: "IMAP"
+        keyword: "Cookies & Sessions"
       },
       {
-        q: "FTP is mainly used for:",
-        options: ["Web browsing", "Email delivery", "File transfer", "Name resolution"],
-        answer: 2,
-        keyword: "FTP"
-      },
-      {
-        q: "Which protocol is used to transfer files over the Internet?",
-        options: ["SMTP", "DNS", "FTP", "SNMP"],
-        answer: 2,
-        keyword: "FTP"
-      },
-      {
-        q: "Which protocol is used to securely transfer files?",
-        options: ["FTP", "HTTP", "SFTP", "SMTP"],
-        answer: 2,
-        keyword: "SFTP"
-      },
-      {
-        q: "Which application layer protocol is used for remote login?",
-        options: ["HTTP", "FTP", "SSH", "DNS"],
-        answer: 2,
-        keyword: "SSH"
-      },
-      {
-        q: "Telnet differs from SSH because Telnet:",
-        options: ["Uses encryption", "Is faster", "Transmits data in plaintext", "Uses UDP"],
-        answer: 2,
-        keyword: "Telnet"
-      },
-      {
-        q: "Which protocol is commonly used for network management?",
-        options: ["SMTP", "SNMP", "FTP", "HTTP"],
+        q: "Which protection applies when using HTTPS for sessions?",
+        options: ["Store IDs in routers", "Encrypt traffic with TLS", "Turn off cookies", "Change IP address"],
         answer: 1,
-        keyword: "SNMP"
+        keyword: "HTTPS Security"
+      },
+      {
+        q: "Which port is used where DNS typically runs?",
+        options: ["Port 21", "Port 25", "Port 53", "Port 80"],
+        answer: 2,
+        keyword: "DNS Port"
       }
     ]
   }
